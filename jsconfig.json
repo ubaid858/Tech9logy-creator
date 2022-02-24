@@ -1,0 +1,31 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "components/*": [
+                "./src/components/*"
+            ],
+            "screens/*": [
+                "./src/screens/*"
+            ],
+            "global/*": [
+                "./src/global/*"
+            ],
+            "navigation/*": [
+                "./src/navigation/*"
+            ],
+            "svgs/*": [
+                "./src/assets/svgs/*"
+            ],
+            "images/*": [
+                "./src/assets/images/*"
+            ],
+            "@redux/*": [
+                "./src/redux/*"
+            ],
+            // "assets/*": [
+            //     "./src/assets/*"
+            // ],
+        }
+    }
+}

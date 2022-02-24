@@ -1,0 +1,23 @@
+{
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": [
+          "./"
+        ],
+        "alias": {
+          "components": "./src/components",
+          "screens": "./src/screens",
+          "global": "./src/global",
+          "navigation": "./src/navigation",
+          // "assets": "./src/assets",
+          "svgs": "./src/assets/svgs",
+          "images": "./src/assets/images",
+          "@redux": "./src/redux",
+          // "hooks": "./src/hooks"
+        }
+      }
+    ]
+  ]
+}
