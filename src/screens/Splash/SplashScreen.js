@@ -38,7 +38,7 @@ const SplashScreen = ({ dispatch, navigation, cart }) => {
                 if (cart.length > 0) {
                     navigation.navigate(ScreenNames.DRAWER)
                 } else {
-                    navigation.navigate(ScreenNames.ADDEMPLOYEEDETAIL)
+                    navigation.navigate(ScreenNames.HOME)
                 }
             }, 1000);
         }, [])
