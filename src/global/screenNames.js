@@ -1,17 +1,11 @@
-//main stack
-export const BOTTOMTABS = "BottomTabs";
+//mainstack
 
-//screens
-export const HOME = 'Search';
+//screen
+export const LOGIN = "Login";
+export const HOME = "Home";
+export const ADDEMPLOYEEDETAIL = "AddEmployeeDetail";
+export const EMPLOYEDETAIL = "EmployeeDetail";
+export const SPLASH = "Splash";
 
-
-//stacks
-export const HOMESTACK = "HomeStack";
-
-
-//profile stack
-export const FAQs = "FAQs";
-
-
-//offer top tab
-export const OFFER = "OfferScreen";
+//Drawer
+export const DRAWER = "Drawer";

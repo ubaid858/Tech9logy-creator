@@ -1,8 +1,6 @@
-import * as Colors from './colors';
+import * as ScreenNames from './ScreenNames';
+import * as Constants from './Constant';
 import * as Fonts from './fonts';
-import * as ScreenNames from './screenNames';
-import * as Constants from './constants';
-import * as Server from './server';
-import * as GlobalStyles from './globalStyles';
+import * as Colors from './Colors';
 
-export { Colors, Fonts, ScreenNames, Constants, Server, GlobalStyles };
+export { ScreenNames, Constants, Fonts, Colors };

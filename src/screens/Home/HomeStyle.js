@@ -1,36 +1,25 @@
 import { StyleSheet } from "react-native";
-import { Colors, Fonts } from "global/index";
-import { DP } from "global/constants";
+import { Colors, Fonts } from "../../global";
+import { DP } from "../../global/Constant";
 
 export const styles = StyleSheet.create({
     container: {
-        // flex: 1,
-        backgroundColor: Colors.WHITE
-    },
-
-    dotView: {
-        flexDirection: 'row',
+        flex: 1,
+        backgroundColor: Colors.GREEN,
         justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: DP(5)
     },
-    activeView: {
-        height: DP(6),
-        width: DP(6),
-        marginRight: DP(5),
+    button: {
+        height: DP(50),
+        backgroundColor: Colors.DARK_GREEN,
+        marginHorizontal: DP(25),
         borderRadius: DP(3),
+        justifyContent: 'center',
+        alignContent: 'center',
     },
-
-    topPickupTitle: {
-        flexDirection: 'row',
-        marginTop: DP(20),
-        marginLeft: DP(15),
-        alignItems: 'center'
-    },
-    picksTitle: {
-        marginLeft: DP(5),
-        fontSize: 15,
-        fontFamily: Fonts.BOLD
+    buttonText: {
+        color: Colors.WHITE,
+        fontFamily: Fonts.BOLD,
+        fontSize: 18,
+        textAlign: 'center'
     }
-
 })
