@@ -20,20 +20,21 @@ const SplashScreen = ({ dispatch, navigation, cart }) => {
         try {
             let value = await AsyncStorage.getItem("userData");
             let getValue = JSON.parse(value)
-            console.log("qwerty", getValue);
-            setTimeout(() => {
-                if (getValue != null) {
-                    setUserCart(getValue);
-                    navigation.navigate(ScreenNames.DRAWER)
-                } else {
-                    navigation.navigate(ScreenNames.HOME)
-                }
-            }, 1500);
+            timerScreen(getValue)
         } catch (error) {
             console.log('ErrorAs', error);
         }
     }
-
+    const timerScreen = (getValue) => {
+        setTimeout(() => {
+            if (getValue != null) {
+                setUserCart(getValue);
+                navigation.navigate(ScreenNames.DRAWER)
+            } else {
+                navigation.navigate(ScreenNames.HOME)
+            }
+        }, 1500);
+    }
 
     useEffect(() => {
         getUserData()
