@@ -9,7 +9,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { ScreenNames } from './global/index'
 
 //screens
-import Login from './screens/Login/Login';
 import Home from './screens/Home/Home';
 import AddEmployeeDetailScreen from './screens/AddEmployDetail/AddEmployeeDetailScreen';
 import EmployeeDetailScreen from './screens/EmployeeDetails/EmployeeDetailScreen';

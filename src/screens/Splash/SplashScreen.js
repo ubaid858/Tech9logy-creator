@@ -40,7 +40,7 @@ const SplashScreen = ({ dispatch, navigation, cart }) => {
                 } else {
                     navigation.navigate(ScreenNames.HOME)
                 }
-            }, 1000);
+            }, 1500);
         }, [])
     );
 

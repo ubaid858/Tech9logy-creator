@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text, StatusBar, TextInput, TouchableOpacity, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useNavigation } from '@react-navigation/native'
+import { useFocusEffect, useNavigation } from '@react-navigation/native'
 
 //styles
 import { styles } from './AddEmployeeDetailStyle'
@@ -47,6 +47,11 @@ const AddEmployeeDetailScreen = ({ cart }) => {
         }
     }
 
+    useFocusEffect(
+        React.useCallback(() => {
+            storeUserData()
+        }, [])
+    );
 
     return (
         <>
@@ -115,7 +120,6 @@ const AddEmployeeDetailScreen = ({ cart }) => {
                         {
                             lastName && firstName && email && jobTitle && salary &&
                                 navigation.navigate(ScreenNames.DRAWER)
-                            storeUserData([...cart])
                         }
 
                     }}

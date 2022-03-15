@@ -11,7 +11,7 @@ const Home = ({ navigation }) => {
             <StatusBar backgroundColor={Colors.DARK_GREEN} barStyle="light-content" />
             <View style={styles.container}>
                 <TouchableOpacity
-                    onPress={() => { navigation.navigate(ScreenNames.DRAWER) }}
+                    onPress={() => { navigation.navigate(ScreenNames.ADDEMPLOYEEDETAIL) }}
                     activeOpacity={0.9}
                     style={styles.button}>
                     <Text style={styles.buttonText}>ADD EMPLOYEE</Text>
