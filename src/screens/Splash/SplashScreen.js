@@ -20,30 +20,24 @@ const SplashScreen = ({ dispatch, navigation, cart }) => {
         try {
             let value = await AsyncStorage.getItem("userData");
             let getValue = JSON.parse(value)
-            setUserCart(getValue);
-        } catch (error) {
-            console.log('ErrorAs', error);
-        }
-    }
-
-    useFocusEffect(
-        React.useCallback(() => {
-            getUserData()
-        }, [])
-    );
-
-    useFocusEffect(
-        React.useCallback(() => {
+            console.log("qwerty", getValue);
             setTimeout(() => {
-                if (cart.length > 0) {
+                if (getValue != null) {
+                    setUserCart(getValue);
                     navigation.navigate(ScreenNames.DRAWER)
                 } else {
                     navigation.navigate(ScreenNames.HOME)
                 }
             }, 1500);
-        }, [])
-    );
+        } catch (error) {
+            console.log('ErrorAs', error);
+        }
+    }
 
+
+    useEffect(() => {
+        getUserData()
+    }, [])
 
     return (
         <View style={styles.container}>

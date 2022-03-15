@@ -3,7 +3,7 @@ import * as UserActionTypes from '../actionTypes/userActionTypes';
 const initialState = {
   name: "Redux in Name",
   cart: [],
-  favCart: [],
+  favCart: 1,
 };
 
 const user = (state = initialState, action) => {

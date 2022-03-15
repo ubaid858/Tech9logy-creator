@@ -12,7 +12,7 @@ import { DP } from '../global/Constant'
 import { Colors, Fonts } from '../global'
 import { connect } from 'react-redux';
 
-const EmployeeCartComponet = ({ item, dispatch, cart }) => {
+const EmployeeCartComponet = ({ item, dispatch, cart, favCart }) => {
 
     const [favoutite, setFavoute] = useState(false);
 
@@ -32,9 +32,6 @@ const EmployeeCartComponet = ({ item, dispatch, cart }) => {
                 onPress={() => {
                     setFavoute(!favoutite)
 
-                    if (favoutite == true) {
-                        dispatch(UserAction.setFavCart([...cart]))
-                    }
                 }}
                 style={styles.starView}>
                 {

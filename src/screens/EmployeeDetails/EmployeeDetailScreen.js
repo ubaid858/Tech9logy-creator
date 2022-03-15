@@ -21,11 +21,11 @@ import { connect } from 'react-redux';
 const EmployeeDetailScreen = ({ navigation, cart }) => {
 
     const [sortData, setSortData] = useState(cart)
+    const [dataTemp, setdataTemp] = useState(cart)
     const [sortingCart, setSortingCart] = useState(false);
     const onRequestClose = () => {
         setSortingCart(!sortingCart)
     }
-
 
 
     const sortByFirstName = () => {
@@ -40,6 +40,11 @@ const EmployeeDetailScreen = ({ navigation, cart }) => {
         })
         setSortData(sort)
     }
+
+    useEffect(() => {
+        console.log(cart);
+        setdataTemp([...cart])
+    }, [cart])
 
     return (
 
@@ -67,11 +72,13 @@ const EmployeeDetailScreen = ({ navigation, cart }) => {
                     </Pressable>
                 </View>
                 <FlatList
-                    data={cart && cart}
+                    data={cart}
                     contentContainerStyle={{ paddingBottom: DP(25) }}
                     renderItem={({ item }) => {
                         return (
-                            <EmployeeCartComponet item={item} />
+                            <View key={item.id}>
+                                <EmployeeCartComponet item={item} />
+                            </View>
                         )
                     }}
                 />

@@ -15,7 +15,7 @@ const AboutDrawerScreen = ({ cart, favCart }) => {
             </View>
             <View style={styles.employeeView}>
                 <Text style={styles.nameText}>Favourites</Text>
-                <Text style={styles.numberText}>{favCart.length}</Text>
+                <Text style={styles.numberText}>{favCart}</Text>
 
             </View>
         </View>

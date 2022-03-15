@@ -21,7 +21,7 @@ const AddEmployeeDetailScreen = ({ cart }) => {
     const [salary, setSalary] = useState();
 
     const userData = {
-        id: data.length + 1,
+        id: Math.round(Math.random() * 1000),
         firstName: firstName,
         lastName: lastName,
         email: email,
@@ -47,11 +47,8 @@ const AddEmployeeDetailScreen = ({ cart }) => {
         }
     }
 
-    useFocusEffect(
-        React.useCallback(() => {
-            storeUserData()
-        }, [])
-    );
+
+
 
     return (
         <>
