@@ -8,40 +8,55 @@ export const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: "#EFF1F2"
     },
-    headerView: {
-        backgroundColor: Colors.GREEN,
-        height: DP(80),
-        flexDirection: 'row',
+    header: {
+        height: DP(50),
+        backgroundColor: '#df8037',
+        justifyContent: 'center'
+    },
+    headerText: {
+        fontWeight: 'bold',
+        fontSize: 16,
+        marginLeft: DP(20)
+    },
+    textInputStyle: {
+        height: DP(55),
+        marginTop: DP(50),
+        marginHorizontal: DP(25),
+        borderWidth: DP(1),
+        borderColor: '#000000',
+        borderRadius: DP(10),
+        paddingLeft: DP(10),
+        fontWeight: "500",
+    },
+    checkView: {
+        backgroundColor: '#80808035',
+        height: DP(55),
+        marginTop: DP(25),
+        marginHorizontal: DP(25),
+        borderRadius: DP(5),
+        flexDirection: "row",
         alignItems: 'center',
-        justifyContent: 'space-between'
+        paddingLeft: DP(15)
     },
-    burgerView: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginLeft: DP(25)
+    checkNameText: {
+        fontSize: 15,
+        fontWeight: '900',
+        marginLeft: DP(10)
     },
-    indexText: {
-        marginLeft: DP(25),
-        fontSize: 20,
-        fontFamily: Fonts.SEMIBOLD
-    },
-    plusView: {
-        flex: 1,
+    postButton: {
         height: DP(40),
-        width: DP(40),
-        backgroundColor: Colors.GREEN,
+        width: DP(150),
+        marginTop: DP(100),
+        backgroundColor: '#4c5d94',
+        alignSelf: 'center',
+        borderRadius: DP(5),
         justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: DP(20),
-        position: 'absolute',
-        bottom: DP(25),
-        right: DP(25),
-        elevation: DP(5),
+        alignItems: 'center'
     },
-    hitSlop: {
-        left: 10,
-        right: 10,
-        top: 10,
-        bottom: 10
+    postText: {
+        color: Colors.WHITE,
+        fontSize: 15,
+        fontWeight: "bold",
+        elevation: 4
     }
 })
