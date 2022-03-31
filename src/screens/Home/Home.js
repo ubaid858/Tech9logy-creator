@@ -1,86 +1,118 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, TouchableOpacity, StatusBar, FlatList } from 'react-native'
+import { StyleSheet, Text, View, Pressable, SafeAreaView, TextInput, FlatList } from 'react-native'
+import LinearGradient from 'react-native-linear-gradient';
 
-import Menu from '../../assets/svgs/Burger'
-import Setting from '../../assets/svgs/setting-';
-import Like from '../../assets/svgs/like';
-import CommentSvg from '../../assets/svgs/com';
+import Pie from 'react-native-pie'
+
+import Dollar from '../../assets/svgs/dollar';
+import Building from '../../assets/svgs/building';
+
+//components
+import Header from '../../Component/Header'
+
 
 //styles
-import { styles } from './HomeStyle';
-import { Colors, ScreenNames } from '../../global';
-import axios from 'axios';
-import { URL } from 'global/ServerUrl';
-import { DP } from 'global/Constant';
+import { styles } from './HomeStyle'
+import PlanComponent from 'src/Component/PlanComponent';
+import { DP, SCREEN_WIDTH } from 'global/Constant';
+import CircleDot from 'src/Component/CircleDot';
 
-const Home = ({ navigation }) => {
 
-    const [data, setData] = useState([]);
-    const [topic, setTopic] = useState()
-    const getUserComments = async () => {
-        const formData = new FormData()
-        formData.append("post_id", "1")
-        try {
-            const responce = await axios.post(`${URL}get_post_detail`, formData);
-            console.log('responce===>', responce.data);
-            setData(responce.data.data.comments)
-            setTopic(responce.data.data.topic)
-        } catch (error) {
-            console.log("Error==>", error);
-        }
-    }
+const dummyData = [
+    {
+        id: 1,
+        planName: 'Basic Plan',
+        price: '122 726',
+        icon: <Dollar />
+    },
+    {
+        id: 2,
+        planName: 'Super Trader',
+        price: '122 726',
+        icon: <Building />
+    },
+    {
+        id: 3,
+        planName: 'Basic Plan',
+        price: '122 726',
+        icon: <Dollar />
+    },
+]
 
-    useEffect(() => {
-        getUserComments()
-    }, [])
+const charData = [
+    {
+        percentage: 46,
+        color: '#B198EF',
+        nam: 'Basic Plan'
+    },
+    {
+        percentage: 36,
+        color: '#6990F0',
+        nam: 'Super Trader'
+    },
+    {
+        percentage: 20,
+        color: '#F6DDA2',
+        nam: 'Gold+'
+    },
+]
+const Home = () => {
 
+    const widthAndHeight = 250
+    const series = [123, 321, 123, 789, 537]
+    const sliceColor = ['#F44336', '#2196F3', '#FFEB3B', '#4CAF50', '#FF9800']
 
     return (
-
-        <View style={styles.container}>
-            <View style={{ flex: 1 }}>
-                <View style={styles.header}>
-                    <View style={styles.burgerView}>
-                        <Menu />
-                        <Text style={styles.headerText}>Home Page</Text>
-                    </View>
-                    <Setting />
-                </View>
-                <FlatList
-                    data={data}
-                    contentContainerStyle={{ paddingBottom: DP(20) }}
-                    renderItem={({ item }) => {
-                        return (
-                            <View style={styles.cartView}>
-                                <Text style={styles.topicText}>Topic:- {topic}</Text>
-                                <Text style={styles.comment}>{item.comment}</Text>
-                                <Text style={styles.commenterName}>{item.commentor_name && `By :- ${item.commentor_name}`}</Text>
-                                <View style={styles.likeCommentView}>
-                                    <View style={styles.flexStyle}>
-                                        <Like />
-                                        <Text style={styles.likeCommentText}>Like</Text>
-                                    </View>
-                                    <TouchableOpacity
-                                        activeOpacity={0.8}
-                                        style={styles.flexStyle}>
-                                        <CommentSvg />
-                                        <Text style={styles.likeCommentText}>comments</Text>
-                                    </TouchableOpacity>
-                                </View>
-                            </View>
-                        )
-                    }}
-                />
+        <SafeAreaView style={styles.container}>
+            <Header />
+            <View style={styles.protifiloView}>
+                <LinearGradient
+                    colors={['#B198EF', '#6990F0']}
+                    start={{ x: 0, y: 1 }} end={{ x: 1, y: -0.5 }}
+                    style={styles.LinearGradientStyle} />
+                <Text style={styles.protifiloText}>Your portfolio</Text>
+                <Text style={styles.priceText}>$ 109 987 973</Text>
             </View>
-            <TouchableOpacity
-                onPress={() => {
-                    navigation.navigate(ScreenNames.EMPLOYEDETAIL)
+            <View style={styles.productView}>
+                <Text style={styles.productText}>Products</Text>
+            </View>
+            <FlatList
+                data={dummyData}
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={{ paddingRight: DP(15), }}
+                style={{ flexGrow: 0 }}
+                renderItem={({ item }) => {
+                    return (
+                        <PlanComponent item={item} />
+                    )
                 }}
-                style={styles.addButton}>
-                <Text style={styles.addButtonText}>Add Comments</Text>
-            </TouchableOpacity>
-        </View>
+            />
 
+            <View style={styles.shareView}>
+                <Text style={styles.productText}>Shares of product</Text>
+                <View style={styles.chartView}>
+                    <Text style={styles.percentageText}>100%</Text>
+                    <Pie
+                        radius={80}
+                        innerRadius={60}
+                        sections={charData}
+                        // strokeCap={'butt'}
+                        dividerSize={1}
+                        strokeCap={'round'}
+
+                    />
+                    <FlatList
+                        data={charData}
+                        renderItem={({ item }) => {
+                            return (
+                                <CircleDot item={item} />
+                            )
+                        }}
+                    />
+                </View>
+            </View>
+        </SafeAreaView>
     )
 }
 

@@ -5,100 +5,64 @@ import { DP } from "../../global/Constant";
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fafafc20',
-        justifyContent: 'space-between'
+        backgroundColor: '#F8F4FC',
     },
-
-    button: {
-        height: DP(50),
-        backgroundColor: Colors.DARK_GREEN,
-        marginHorizontal: DP(25),
-        borderRadius: DP(3),
-        justifyContent: 'center',
-        alignContent: 'center',
+    protifiloView: {
+        height: DP(130),
+        marginTop: DP(25),
+        marginHorizontal: DP(20),
+        justifyContent: 'center'
     },
-    buttonText: {
-        color: Colors.WHITE,
-        fontFamily: Fonts.BOLD,
-        fontSize: 18,
-        textAlign: 'center'
+    LinearGradientStyle: {
+        backgroundColor: 'transparent',
+        position: 'absolute',
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0,
+        borderRadius: DP(25)
     },
-    header: {
-        height: DP(55),
-        backgroundColor: Colors.GREEN,
-        flexDirection: "row",
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        paddingRight: DP(20)
-
-    },
-    burgerView: {
-        flexDirection: "row",
-        alignItems: 'center',
-        marginLeft: DP(20)
-    },
-    headerText: {
-        color: Colors.WHITE,
+    priceText: {
+        fontSize: 28,
+        marginLeft: DP(20),
         fontWeight: "bold",
-        fontSize: 16,
-        marginLeft: DP(25)
+        color: Colors.WHITE
     },
-    cartView: {
+    protifiloText: {
+        marginLeft: DP(20),
+        marginBottom: DP(12),
+        color: Colors.WHITE,
+        fontWeight: "800"
+    },
+    productView: {
+        height: DP(60),
         backgroundColor: Colors.WHITE,
-        marginTop: DP(12),
-        marginHorizontal: DP(10),
-        borderRadius: DP(5),
-        elevation: 3
-    },
-    topicText: {
-        color: Colors.GREEN,
-        marginTop: DP(5),
-        marginLeft: DP(5),
-        fontWeight: "500",
-        fontSize: 13
-    },
-    comment: {
-        marginTop: DP(5),
-        marginLeft: DP(10),
-        fontSize: 15,
-        fontWeight: '900',
-        marginBottom: DP(20)
-    },
-    commenterName: {
-        alignSelf: 'flex-end',
-        marginRight: DP(10),
-        fontSize: 13,
-        color: "#00000080",
-        marginBottom: DP(5)
-    },
-    likeCommentView: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginHorizontal: DP(15),
-        marginBottom: DP(15)
-    },
-    likeCommentText: {
-        fontWeight: "bold",
-        color: "#4c5d94",
-        textAlign: 'center',
-        marginLeft: DP(5)
-    },
-    flexStyle: {
-        flexDirection: 'row',
-        alignItems: 'center'
-    },
-    addButton: {
-        height: DP(50),
-        backgroundColor: Colors.GREEN,
-        marginHorizontal: DP(25),
-        borderRadius: DP(10),
-        marginVertical: DP(10),
+        marginTop: DP(30),
         justifyContent: 'center',
+        borderTopLeftRadius: DP(25),
+        borderTopRightRadius: DP(25)
+    },
+    productText: {
+        fontSize: 18,
+        marginLeft: DP(20),
+        fontWeight: '800',
+    },
+    shareView: {
+        backgroundColor: Colors.WHITE,
+        paddingTop: DP(10),
+    },
+    chartView: {
+        marginLeft: DP(20),
+        marginTop: DP(20),
+        marginBottom: DP(50),
+        flexDirection: 'row',
         alignItems: 'center'
     },
-    addButtonText: {
-        color: Colors.WHITE,
-        fontWeight: 'bold',
-        fontSize: 15
+    percentageText: {
+        position: 'absolute',
+        left: DP(55),
+        fontSize: 20,
+        fontWeight: 'bold'
     }
+
 })
