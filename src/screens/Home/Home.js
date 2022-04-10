@@ -1,117 +1,61 @@
-import React, { useState, useEffect } from 'react'
-import { StyleSheet, Text, View, Pressable, SafeAreaView, TextInput, FlatList } from 'react-native'
-import LinearGradient from 'react-native-linear-gradient';
+import React, { useState } from 'react'
+import { StyleSheet, View, Text, SafeAreaView, } from 'react-native'
 
-import Pie from 'react-native-pie'
-
-import Dollar from '../../assets/svgs/dollar';
-import Building from '../../assets/svgs/building';
+import MapView, { PROVIDER_GOOGLE, Marker, Polyline } from 'react-native-maps';
 
 //components
-import Header from '../../Component/Header'
-
 
 //styles
 import { styles } from './HomeStyle'
-import PlanComponent from 'src/Component/PlanComponent';
-import { DP, SCREEN_WIDTH } from 'global/Constant';
-import CircleDot from 'src/Component/CircleDot';
+import { DP, SCREEN_WIDTH, SCREEN_HEIGHT } from 'global/Constant';
 
 
-const dummyData = [
-    {
-        id: 1,
-        planName: 'Basic Plan',
-        price: '122 726',
-        icon: <Dollar />
-    },
-    {
-        id: 2,
-        planName: 'Super Trader',
-        price: '122 726',
-        icon: <Building />
-    },
-    {
-        id: 3,
-        planName: 'Basic Plan',
-        price: '122 726',
-        icon: <Dollar />
-    },
-]
-
-const charData = [
-    {
-        percentage: 46,
-        color: '#B198EF',
-        nam: 'Basic Plan'
-    },
-    {
-        percentage: 36,
-        color: '#6990F0',
-        nam: 'Super Trader'
-    },
-    {
-        percentage: 20,
-        color: '#F6DDA2',
-        nam: 'Gold+'
-    },
-]
 const Home = () => {
 
-    const widthAndHeight = 250
-    const series = [123, 321, 123, 789, 537]
-    const sliceColor = ['#F44336', '#2196F3', '#FFEB3B', '#4CAF50', '#FF9800']
+    const [pin, setPin] = useState({ latitude: 18.516726, longitude: 73.856255 })
+
+    const coordinate = [
+        { latitude: 18.427294, longitude: 73.834800 },
+        { latitude: 18.447780, longitude: 73.864209 },
+        { latitude: 18.493596, longitude: 73.893367 },
+        { latitude: 18.518526, longitude: 73.909895 },
+        { latitude: 18.536748, longitude: 73.910800 },
+        { latitude: 18.546718, longitude: 73.917565 },
+        { latitude: 18.557990, longitude: 73.929164 },
+        { latitude: 18.563455, longitude: 73.931159 },
+        { latitude: 18.573455, longitude: 73.881159 },
+        { latitude: 18.575125, longitude: 73.875251 },
+        { latitude: 18.586094, longitude: 73.873829 },
+        { latitude: 18.579134, longitude: 73.849111 },
+        { latitude: 18.565380, longitude: 73.801720 },
+        { latitude: 18.545770, longitude: 73.784505 },
+        { latitude: 18.512135, longitude: 73.757968 },
+        { latitude: 18.462260, longitude: 73.787538 },
+        { latitude: 18.437709, longitude: 73.814829 },
+        { latitude: 18.427294, longitude: 73.834800 },
+
+    ]
 
     return (
         <SafeAreaView style={styles.container}>
-            <Header />
-            <View style={styles.protifiloView}>
-                <LinearGradient
-                    colors={['#B198EF', '#6990F0']}
-                    start={{ x: 0, y: 1 }} end={{ x: 1, y: -0.5 }}
-                    style={styles.LinearGradientStyle} />
-                <Text style={styles.protifiloText}>Your portfolio</Text>
-                <Text style={styles.priceText}>$ 109 987 973</Text>
-            </View>
-            <View style={styles.productView}>
-                <Text style={styles.productText}>Products</Text>
-            </View>
-            <FlatList
-                data={dummyData}
-                horizontal={true}
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={{ paddingRight: DP(15), }}
-                style={{ flexGrow: 0 }}
-                renderItem={({ item }) => {
-                    return (
-                        <PlanComponent item={item} />
-                    )
+            <MapView style={{ height: SCREEN_HEIGHT, width: SCREEN_WIDTH, }}
+                provider={PROVIDER_GOOGLE}
+                initialRegion={{
+                    latitude: pin.latitude,
+                    longitude: pin.longitude,
+                    latitudeDelta: 0.0421,
+                    longitudeDelta: 0.0421,
                 }}
-            />
-
-            <View style={styles.shareView}>
-                <Text style={styles.productText}>Shares of product</Text>
-                <View style={styles.chartView}>
-                    <Text style={styles.percentageText}>100%</Text>
-                    <Pie
-                        radius={80}
-                        innerRadius={60}
-                        sections={charData}
-                        // strokeCap={'butt'}
-                        dividerSize={1}
-                        strokeCap={'round'}
-
-                    />
-                    <FlatList
-                        data={charData}
-                        renderItem={({ item }) => {
-                            return (
-                                <CircleDot item={item} />
-                            )
-                        }}
-                    />
-                </View>
-            </View>
+            >
+                <Polyline
+                    coordinates={coordinate}
+                    strokeColor="#000"
+                    strokeWidth={1}
+                />
+                <Marker
+                    coordinate={{ latitude: pin.latitude, longitude: pin.longitude }}
+                />
+            </MapView>
         </SafeAreaView>
     )
 }
