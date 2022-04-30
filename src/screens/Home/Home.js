@@ -1,61 +1,124 @@
-import React, { useState } from 'react'
-import { StyleSheet, View, Text, SafeAreaView, } from 'react-native'
+import React, { useState, useEffect } from 'react'
+import { View, SafeAreaView, TouchableOpacity, TextInput, FlatList, Text } from 'react-native'
 
-import MapView, { PROVIDER_GOOGLE, Marker, Polyline } from 'react-native-maps';
+import Cross from '../../assets/svgs/menu'
 
 //components
+import SortModal from 'src/component/SortModal';
+import HomeCart from 'src/component/HomeCart';
 
 //styles
 import { styles } from './HomeStyle'
-import { DP, SCREEN_WIDTH, SCREEN_HEIGHT } from 'global/Constant';
+import { DP, } from 'global/Constant';
+
+const dummy = [
+    {
+        id: 1,
+        type: 'video',
+        videoUrl: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4',
+        Name: 'Awesome video',
+        imageUrl: null
+    },
+    {
+        id: 2,
+        type: 'images',
+        videoUrl: null,
+        Name: 'very beautiful image',
+        imageUrl: 'https://picsum.photos/id/1016/367/267',
+    },
+    {
+        id: 3,
+        type: 'video',
+        videoUrl: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4',
+        Name: 'Funny video',
+        imageUrl: null
+    },
+
+    {
+        id: 4,
+        type: 'images',
+        videoUrl: null,
+        Name: 'sun set image',
+        discription: 'Cakes for makes Bass hukum kijiye',
+        imageUrl: 'https://ychef.files.bbci.co.uk/1376x774/p08hq2br.jpg',
+    },
+]
+
+const Home = ({ navigation }) => {
+
+    const [onSortModal, setonSortModal] = useState(false)
+    const [searchItem, setsearcItem] = useState('');
+    const [retunData, setRetunData] = useState(dummy)
 
 
-const Home = () => {
+    const onCloseModal = () => {
+        setonSortModal(!onSortModal)
+    }
+    const searching = () => {
+        const tempData = dummy.filter((item) => {
+            let str = item.Name.split(' ');
+            console.log(str);
+            for (let i = 0; i < str.length; i++) {
+                if (str[i].toUpperCase().startsWith(searchItem.toUpperCase())) {
+                    return true
+                }
+            }
+        })
+        console.log(tempData);
+        setRetunData(tempData)
+    }
 
-    const [pin, setPin] = useState({ latitude: 18.516726, longitude: 73.856255 })
+    const asending = () => {
+        retunData.sort((a, b) => (a.Name > b.Name) ? 1 : -1)
+    }
+    const desending = () => {
+        retunData.sort((a, b) => (b.Name > a.Name) ? 1 : -1)
+    }
 
-    const coordinate = [
-        { latitude: 18.427294, longitude: 73.834800 },
-        { latitude: 18.447780, longitude: 73.864209 },
-        { latitude: 18.493596, longitude: 73.893367 },
-        { latitude: 18.518526, longitude: 73.909895 },
-        { latitude: 18.536748, longitude: 73.910800 },
-        { latitude: 18.546718, longitude: 73.917565 },
-        { latitude: 18.557990, longitude: 73.929164 },
-        { latitude: 18.563455, longitude: 73.931159 },
-        { latitude: 18.573455, longitude: 73.881159 },
-        { latitude: 18.575125, longitude: 73.875251 },
-        { latitude: 18.586094, longitude: 73.873829 },
-        { latitude: 18.579134, longitude: 73.849111 },
-        { latitude: 18.565380, longitude: 73.801720 },
-        { latitude: 18.545770, longitude: 73.784505 },
-        { latitude: 18.512135, longitude: 73.757968 },
-        { latitude: 18.462260, longitude: 73.787538 },
-        { latitude: 18.437709, longitude: 73.814829 },
-        { latitude: 18.427294, longitude: 73.834800 },
+    useEffect(() => {
+        if (searchItem.length > 2) {
+            searching()
+        } else {
+            setRetunData(dummy)
+        }
+    }, [searchItem])
 
-    ]
 
     return (
         <SafeAreaView style={styles.container}>
-            <MapView style={{ height: SCREEN_HEIGHT, width: SCREEN_WIDTH, }}
-                provider={PROVIDER_GOOGLE}
-                initialRegion={{
-                    latitude: pin.latitude,
-                    longitude: pin.longitude,
-                    latitudeDelta: 0.0421,
-                    longitudeDelta: 0.0421,
-                }}
-            >
-                <Polyline
-                    coordinates={coordinate}
-                    strokeColor="#000"
-                    strokeWidth={1}
-                />
-                <Marker
-                    coordinate={{ latitude: pin.latitude, longitude: pin.longitude }}
-                />
-            </MapView>
+            <View style={styles.inputView}>
+                <TextInput style={styles.textInput}
+                    placeholder="Search"
+                    onChangeText={(e) => { setsearcItem(e) }} />
+                <TouchableOpacity
+                    onPress={() => {
+                        setonSortModal(true)
+                    }}
+                >
+                    <Cross />
+                </TouchableOpacity>
+            </View>
+
+            {
+                retunData.length > 0 ?
+                    <FlatList
+                        data={retunData}
+                        contentContainerStyle={{ paddingBottom: DP(20) }}
+                        renderItem={({ item }) => {
+                            return (
+                                <HomeCart item={item} />
+                            )
+                        }}
+                    />
+                    :
+                    <Text style={{ position: 'absolute', top: '50%', left: '33%' }}>sorry no match data!!</Text>
+            }
+            <SortModal
+                visibility={onSortModal}
+                onClose={onCloseModal}
+                asending={asending}
+                desending={desending}
+            />
         </SafeAreaView>
     )
 }
